@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: jentic-spring-boot-example
+
+server:
+  port: 8080
+
+jentic:
+  runtime:
+    name: example-runtime
+    environment: development
+  agents:
+    base-package: dev.jentic.example.springboot.agent
+  # To enable LLM support, uncomment both this block AND the jentic-adapters
+  # dependency in pom.xml. Then POST /api/llm-greet to trigger LlmGreeterAgent.
+  # llm:
+  #   provider: openai
+  #   api-key: ${OPENAI_API_KEY}
+  #   model: gpt-4o-mini
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: always
