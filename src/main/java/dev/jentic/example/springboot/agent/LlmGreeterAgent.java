@@ -65,7 +65,7 @@ public class LlmGreeterAgent extends BaseAgent {
 
         log.info("[LlmGreeterAgent] Calling {} ...", provider.getProviderName());
 
-        LLMRequest request = LLMRequest.builder(provider.getProviderName())
+        LLMRequest request = LLMRequest.builder()
                 .systemMessage("You are a friendly assistant embedded in a Jentic multi-agent system.")
                 .userMessage("Say hello in one sentence, mentioning that you are running inside " +
                              "a Spring Boot app powered by Jentic.")

@@ -1,6 +1,6 @@
 # jentic-example-spring-boot
 
-Minimal standalone Spring Boot 3.5.x application demonstrating
+Minimal standalone Spring Boot 4.0.x application demonstrating
 [jentic-spring-boot-starter](https://github.com/mauro-mura/jentic) zero-boilerplate integration.
 
 ## Prerequisites
@@ -10,7 +10,7 @@ Minimal standalone Spring Boot 3.5.x application demonstrating
 - Jentic installed locally (until published to Maven Central):
 
 ```bash
-git clone https://github.com/mauro-mura/jentic.git
+git clone --branch v0.18.0 https://github.com/mauro-mura/jentic.git
 cd jentic
 mvn install -DskipTests
 ```

@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.13</version>
+        <version>4.0.5</version>
     </parent>
 
     <groupId>dev.jentic.example</groupId>
@@ -21,7 +21,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <jentic.version>0.14.0-SNAPSHOT</jentic.version>
+        <jentic.version>0.18.0</jentic.version>
     </properties>
 
     <dependencies>
