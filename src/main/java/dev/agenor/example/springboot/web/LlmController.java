@@ -1,13 +1,13 @@
-package dev.jentic.example.springboot.web;
+package dev.agenor.example.springboot.web;
 
-import dev.jentic.runtime.JenticRuntime;
+import dev.agenor.runtime.AgenorRuntime;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Demonstrates starting a Jentic agent with {@code autoStart = false} on demand.
+ * Demonstrates starting an Agenor agent with {@code autoStart = false} on demand.
  *
  * <p>The {@code LlmGreeterAgent} is registered at startup but not started.
  * This endpoint activates it, triggering its ONE_SHOT behavior which calls the LLM.
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class LlmController {
 
-    private final JenticRuntime runtime;
+    private final AgenorRuntime runtime;
 
-    public LlmController(JenticRuntime runtime) {
+    public LlmController(AgenorRuntime runtime) {
         this.runtime = runtime;
     }
 

@@ -1,33 +1,33 @@
-# jentic-example-spring-boot
+# agenor-example-spring-boot
 
 Minimal standalone Spring Boot 4.0.x application demonstrating
-[jentic-spring-boot-starter](https://github.com/mauro-mura/jentic) zero-boilerplate integration.
+[agenor-spring-boot-starter](https://github.com/mauro-mura/agenor) zero-boilerplate integration.
 
 ## Prerequisites
 
 - Java 21+
 - Maven 3.9+
-- Jentic installed locally (until published to Maven Central):
+- Agenor installed locally (until published to Maven Central):
 
 ```bash
-git clone --branch v0.18.0 https://github.com/mauro-mura/jentic.git
-cd jentic
+git clone --branch v0.24.0 https://github.com/mauro-mura/agenor.git
+cd agenor
 mvn install -DskipTests
 ```
 
 ## Run
 
 ```bash
-git clone https://github.com/mauro-mura/jentic-example-spring-boot.git
-cd jentic-example-spring-boot
+git clone https://github.com/mauro-mura/agenor-example-spring-boot.git
+cd agenor-example-spring-boot
 mvn spring-boot:run
 ```
 
 Expected output:
 ```
-INFO  JenticAutoConfiguration - Building JenticRuntime: runtime.name=example-runtime
-INFO  JenticAutoConfiguration - Starting JenticRuntime...
-INFO  GreeterAgent            - [GreeterAgent] Hello from Jentic Spring Boot Starter!
+INFO  AgenorAutoConfiguration - Building AgenorRuntime: runtime.name=example-runtime
+INFO  AgenorAutoConfiguration - Starting AgenorRuntime...
+INFO  GreeterAgent            - [GreeterAgent] Hello from Agenor Spring Boot Starter!
 INFO  ClockAgent              - [ClockAgent] tick — 10:00:00
 INFO  ClockAgent              - [ClockAgent] tick — 10:00:05
 ```
@@ -52,7 +52,7 @@ curl http://localhost:8080/actuator/health | jq
 {
   "status": "UP",
   "components": {
-    "jentic": {
+    "Agenor": {
       "status": "UP",
       "details": {
         "runtime.name": "example-runtime",
@@ -68,18 +68,18 @@ curl http://localhost:8080/actuator/health | jq
 
 ## Enable LLM and activate LlmGreeterAgent
 
-**Step 1** — uncomment `jentic-adapters` in `pom.xml`:
+**Step 1** — uncomment `agenor-adapters` in `pom.xml`:
 ```xml
 <dependency>
-    <groupId>dev.jentic</groupId>
-    <artifactId>jentic-adapters</artifactId>
-    <version>${jentic.version}</version>
+    <groupId>dev.agenor</groupId>
+    <artifactId>agenor-adapters</artifactId>
+    <version>${agenor.version}</version>
 </dependency>
 ```
 
 **Step 2** — uncomment the `llm` block in `application.yml`:
 ```yaml
-jentic:
+agenor:
   llm:
     provider: openai
     api-key: ${OPENAI_API_KEY}
@@ -103,5 +103,5 @@ LlmGreeterAgent started — check the logs for the LLM response.
 Log output:
 ```
 INFO  LlmGreeterAgent - [LlmGreeterAgent] Calling gpt-4o-mini ...
-INFO  LlmGreeterAgent - [LlmGreeterAgent] LLM says: Hello! I'm running inside a Spring Boot app powered by Jentic, ready to assist you!
+INFO  LlmGreeterAgent - [LlmGreeterAgent] LLM says: Hello! I'm running inside a Spring Boot app powered by Agenor, ready to assist you!
 ```

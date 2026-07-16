@@ -1,17 +1,17 @@
 spring:
   application:
-    name: jentic-spring-boot-example
+    name: agenor-spring-boot-example
 
 server:
   port: 8080
 
-jentic:
+agenor:
   runtime:
     name: example-runtime
     environment: development
   agents:
-    base-package: dev.jentic.example.springboot.agent
-  # To enable LLM support, uncomment both this block AND the jentic-adapters
+    base-package: dev.agenor.example.springboot.agent
+  # To enable LLM support, uncomment both this block AND the agenor-adapters
   # dependency in pom.xml. Then POST /api/llm-greet to trigger LlmGreeterAgent.
   # llm:
   #   provider: openai

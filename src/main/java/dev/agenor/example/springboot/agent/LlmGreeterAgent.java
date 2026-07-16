@@ -1,11 +1,11 @@
-package dev.jentic.example.springboot.agent;
+package dev.agenor.example.springboot.agent;
 
-import dev.jentic.core.annotations.JenticAgent;
-import dev.jentic.core.annotations.JenticBehavior;
-import dev.jentic.core.BehaviorType;
-import dev.jentic.core.llm.LLMProvider;
-import dev.jentic.core.llm.LLMRequest;
-import dev.jentic.runtime.agent.BaseAgent;
+import dev.agenor.core.annotations.Agent;
+import dev.agenor.core.annotations.Behavior;
+import dev.agenor.core.BehaviorType;
+import dev.agenor.core.llm.LLMProvider;
+import dev.agenor.core.llm.LLMRequest;
+import dev.agenor.runtime.agent.BaseAgent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,18 +19,18 @@ import org.slf4j.LoggerFactory;
  * </pre>
  *
  * <p>The {@link LLMProvider} is injected by {@code AgentFactory} when the runtime
- * has one registered (i.e. {@code jentic.llm.provider} is set to a non-{@code none}
+ * has one registered (i.e. {@code agenor.llm.provider} is set to a non-{@code none}
  * value in {@code application.yml}). Without a provider, the behavior logs a warning
  * and skips the LLM call. This allows the app to start cleanly with LLM disabled.
  *
  * <p>To enable:
  * <ol>
- *   <li>Uncomment {@code jentic-adapters} in {@code pom.xml}</li>
- *   <li>Uncomment the {@code jentic.llm} block in {@code application.yml}</li>
+ *   <li>Uncomment {@code agenor-adapters} in {@code pom.xml}</li>
+ *   <li>Uncomment the {@code agenor.llm} block in {@code application.yml}</li>
  *   <li>{@code POST /api/llm-greet}</li>
  * </ol>
  */
-@JenticAgent(value = "llm-greeter", autoStart = false)
+@Agent(value = "llm-greeter", autoStart = false)
 public class LlmGreeterAgent extends BaseAgent {
 
     private static final Logger log = LoggerFactory.getLogger(LlmGreeterAgent.class);
@@ -39,7 +39,7 @@ public class LlmGreeterAgent extends BaseAgent {
 
     /**
      * Used by AgentFactory when a LLMProvider service is registered in the runtime
-     * (jentic.llm.provider != none). AgentFactory prefers the most-parameter constructor.
+     * (agenor.llm.provider != none). AgentFactory prefers the most-parameter constructor.
      */
     public LlmGreeterAgent(LLMProvider provider) {
         super("llm-greeter", "LLM Greeter");
@@ -55,20 +55,20 @@ public class LlmGreeterAgent extends BaseAgent {
         this.provider = null;
     }
 
-    @JenticBehavior(type = BehaviorType.ONE_SHOT)
+    @Behavior(type = BehaviorType.ONE_SHOT)
     public void greet() {
         if (provider == null) {
             log.warn("[LlmGreeterAgent] No LLMProvider configured. " +
-                     "Uncomment jentic-adapters in pom.xml and jentic.llm in application.yml.");
+                     "Uncomment agenor-adapters in pom.xml and agenor.llm in application.yml.");
             return;
         }
 
         log.info("[LlmGreeterAgent] Calling {} ...", provider.getProviderName());
 
         LLMRequest request = LLMRequest.builder()
-                .systemMessage("You are a friendly assistant embedded in a Jentic multi-agent system.")
+                .systemMessage("You are a friendly assistant embedded in an Agenor multi-agent system.")
                 .userMessage("Say hello in one sentence, mentioning that you are running inside " +
-                             "a Spring Boot app powered by Jentic.")
+                             "a Spring Boot app powered by Agenor.")
                 .maxTokens(100)
                 .build();
 
